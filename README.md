@@ -73,12 +73,15 @@ If you are using an ESP board compatible with the Wemos board (ESP8266 Wemos D1/
 | LED output                | GPIO 2    |
 
 # Flashing
-  
+
+There are two versions of the firmware for ESP32 and ESP32-S2. The 'factory' and the 'base' one. Factory firmware should be flashed to offset 0x0, base firmware to offset 0x10000.
+
 **ESP32-S2 Lolin mini:**
 
 Requires using `esptool.py` to flash the firmware e.g.  
 
-`esptool.py write_flash 0x10000 hyperspi_esp32_s2_mini_SK6812_RGBW_COLD.bin`
+ - `esptool.py write_flash 0x10000 hyperspi_esp32_s2_mini_SK6812_RGBW_COLD.bin` or
+ - `esptool.py write_flash 0x0 hyperspi_esp32_s2_mini_SK6812_RGBW_COLD.factory.bin`
 
 Troubleshooting: ESP32-S2 Lolin mini recovery procedure.  
 1. Put the board into dfu mode using board buttons: press board `Rst` + `0` buttons, then release `Rst`, next release `0`  
@@ -181,9 +184,9 @@ build_flags = -DNEOPIXEL_RGB -DDATA_PIN=2 ${env.build_flags} -DSECOND_SEGMENT_ST
 ...
 ```
 Implementation example:
-- The diagram of the board for WS2812b including ESP32 and the SN74AHCT125N 74AHCT125 [level shifter](https://github.com/awawa-dev/HyperHDR/wiki/Level-Shifter).
+- The diagram of the board for WS2812b/SK6812 including ESP32 and the SN74AHCT125N 74AHCT125 [level shifter](https://github.com/awawa-dev/HyperHDR/wiki/Level-Shifter).
 
-![HyperSPI](https://user-images.githubusercontent.com/85223482/216823785-746b940c-73ab-4b2f-a243-91dbc9d22816.png)
+![HyperSPI](https://user-images.githubusercontent.com/85223482/222923979-f344349a-1f8b-4195-94ca-51721923359e.png)
 
 # Performance output
 
